@@ -4,12 +4,24 @@ export interface CodingRequest {
   patient_type: string;
   setting: string;
   time_spent: string;
+  payer_type: string;
+  global_period: string;
+  units: string;
 }
 
 export interface PrimaryCode {
   cpt_code: string;
   description: string;
   confidence: "high" | "medium" | "low";
+  global_period_days?: number | null;
+  rvu?: number | null;
+}
+
+export interface AddOnCode {
+  cpt_code: string;
+  description: string;
+  requires_primary: string;
+  reason: string;
 }
 
 export interface Alternative {
@@ -22,6 +34,7 @@ export interface ICD10Code {
   code: string;
   description: string;
   necessity: string;
+  sequence_position?: number;
 }
 
 export interface Modifier {
@@ -29,6 +42,7 @@ export interface Modifier {
   name: string;
   apply: boolean;
   reason: string;
+  payer_note?: string;
 }
 
 export interface CodingWarning {
@@ -38,6 +52,7 @@ export interface CodingWarning {
 
 export interface CodingResult {
   primary_code: PrimaryCode;
+  add_on_codes: AddOnCode[];
   alternatives: Alternative[];
   icd10_codes: ICD10Code[];
   modifiers: Modifier[];
