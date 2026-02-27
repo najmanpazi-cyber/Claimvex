@@ -1,5 +1,6 @@
 export interface CodingRequest {
   clinical_input: string;
+  specialty: string;
   laterality: string;
   patient_type: string;
   setting: string;

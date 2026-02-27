@@ -54,6 +54,7 @@ interface ClinicalInputProps {
 
 const ClinicalInput = ({ onSubmit, isLoading, textareaRef }: ClinicalInputProps) => {
   const [clinicalInput, setClinicalInput] = useState("");
+  const [specialty, setSpecialty] = useState("Orthopedics");
   const [laterality, setLaterality] = useState("Not specified");
   const [patientType, setPatientType] = useState("Not specified");
   const [setting, setSetting] = useState("Office/Outpatient");
@@ -81,6 +82,7 @@ const ClinicalInput = ({ onSubmit, isLoading, textareaRef }: ClinicalInputProps)
     setTimeout(() => setCooldown(false), 2000);
     onSubmit({
       clinical_input: clinicalInput,
+      specialty,
       laterality,
       patient_type: patientType,
       setting,
@@ -112,6 +114,29 @@ const ClinicalInput = ({ onSubmit, isLoading, textareaRef }: ClinicalInputProps)
           <span className="font-semibold">De-identify before pasting.</span>{" "}
           Remove patient name, date of birth, MRN, SSN, phone number, and any other personal identifiers.
           Clinical details (procedure, diagnosis, laterality, setting) are all Claive needs.
+        </div>
+      </div>
+
+      {/* Specialty Selector — prominent, affects all coding logic */}
+      <div>
+        <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+          Specialty
+        </label>
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+          {(["Orthopedics", "Sports Medicine", "Spine", "Pain Management"] as const).map((s) => (
+            <button
+              key={s}
+              type="button"
+              onClick={() => setSpecialty(s)}
+              className={`rounded-lg border px-3 py-2 text-xs font-medium transition-all ${
+                specialty === s
+                  ? "border-[#2563EB] bg-[#EFF6FF] text-[#1D4ED8] shadow-sm"
+                  : "border-[#E5E7EB] bg-white text-[#6B7280] hover:border-[#93C5FD] hover:text-[#374151]"
+              }`}
+            >
+              {s}
+            </button>
+          ))}
         </div>
       </div>
 

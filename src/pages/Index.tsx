@@ -41,6 +41,7 @@ const Index = () => {
       const { data, error: fnError } = await supabase.functions.invoke("generate-codes", {
         body: {
           clinical_input: request.clinical_input,
+          specialty: request.specialty,
           laterality: request.laterality,
           patient_type: request.patient_type,
           setting: request.setting,
