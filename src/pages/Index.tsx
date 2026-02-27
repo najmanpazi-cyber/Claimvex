@@ -2,9 +2,12 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import Header from "@/components/Header";
 import ClinicalInput from "@/components/ClinicalInput";
 import ResultsPanel from "@/components/ResultsPanel";
+import HistoryDrawer from "@/components/HistoryDrawer";
 import type { CodingRequest, CodingResult, CodingError } from "@/types/coding";
 import { supabase } from "@/integrations/supabase/client";
 import { FileText, ClipboardList } from "lucide-react";
+import { useSessionHistory } from "@/hooks/useSessionHistory";
+import type { HistoryEntry } from "@/hooks/useSessionHistory";
 
 type MobileTab = "input" | "results";
 
@@ -13,9 +16,11 @@ const Index = () => {
   const [error, setError] = useState<CodingError | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [lastClinicalInput, setLastClinicalInput] = useState("");
+  const [lastRequest, setLastRequest] = useState<CodingRequest | null>(null);
   const [mobileTab, setMobileTab] = useState<MobileTab>("input");
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const sessionId = useRef(crypto.randomUUID());
+  const { history, addEntry, clearHistory } = useSessionHistory();
 
   // Auto-switch to results tab when analysis completes
   useEffect(() => {
@@ -30,6 +35,7 @@ const Index = () => {
     setResult(null);
     setMobileTab("results"); // switch immediately so user sees the loading spinner
     setLastClinicalInput(request.clinical_input);
+    setLastRequest(request);
 
     try {
       const { data, error: fnError } = await supabase.functions.invoke("generate-codes", {
@@ -53,7 +59,11 @@ const Index = () => {
           user_message: data?.user_message || "Something went wrong. Please try again.",
         });
       } else {
-        setResult(data as CodingResult);
+        const codingResult = data as CodingResult;
+        setResult(codingResult);
+        if (lastRequest) {
+          addEntry(lastRequest, codingResult);
+        }
       }
     } catch (err: any) {
       setError({
@@ -67,6 +77,14 @@ const Index = () => {
     }
   }, []);
 
+  const handleHistorySelect = useCallback((entry: HistoryEntry) => {
+    setResult(entry.result);
+    setError(null);
+    setLastClinicalInput(entry.request.clinical_input);
+    setLastRequest(entry.request);
+    setMobileTab("results");
+  }, []);
+
   const handleRetry = useCallback(() => {
     setError(null);
     setResult(null);
@@ -78,7 +96,15 @@ const Index = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <Header />
+      <Header
+        historyDrawer={
+          <HistoryDrawer
+            history={history}
+            onSelect={handleHistorySelect}
+            onClear={clearHistory}
+          />
+        }
+      />
 
       {/* ── Mobile Tab Bar ── */}
       <div className="flex border-b lg:hidden">

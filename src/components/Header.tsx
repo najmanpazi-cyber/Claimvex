@@ -1,16 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft } from "lucide-react";
+import type { ReactNode } from "react";
 
 const PRODUCT_NAME = "Claive";
 
-const Header = () => {
+interface HeaderProps {
+  historyDrawer?: ReactNode;
+}
+
+const Header = ({ historyDrawer }: HeaderProps) => {
   const navigate = useNavigate();
 
   return (
     <header className="flex items-center justify-between border-b px-4 py-3 sm:px-6">
-      {/* Left: back link + name */}
-      <div className="flex min-w-0 items-center gap-3">
+      {/* Left: history drawer + back link + name */}
+      <div className="flex min-w-0 items-center gap-2">
+        {historyDrawer}
+
         <button
           onClick={() => navigate("/")}
           className="flex shrink-0 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
