@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {
   ClipboardList, Loader2, AlertTriangle, ChevronDown, ChevronUp,
-  Copy, Check, FileText, Stethoscope, ShieldCheck,
+  Copy, Check, FileText, Stethoscope, ShieldCheck, Download, Printer,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -10,6 +10,8 @@ import { supabase } from "@/integrations/supabase/client";
 
 import CleanClaimIndicator from "@/components/results/CleanClaimIndicator";
 import { CptTooltip } from "@/components/CptTooltip";
+import { downloadCsv, openPrintView } from "@/utils/exportUtils";
+import type { CodingRequest } from "@/types/coding";
 import PrimaryCodeCard from "@/components/results/PrimaryCodeCard";
 import AddOnCodes from "@/components/results/AddOnCodes";
 import DiagnosisCodes from "@/components/results/DiagnosisCodes";
@@ -24,6 +26,7 @@ interface ResultsPanelProps {
   onRetry: () => void;
   sessionId: string;
   clinicalInputPreview: string;
+  lastRequest: CodingRequest | null;
 }
 
 // Loading steps to show while analyzing
@@ -35,10 +38,11 @@ const LOADING_STEPS = [
 ];
 
 const ResultsPanel = ({
-  result, error, isLoading, onRetry, sessionId, clinicalInputPreview,
+  result, error, isLoading, onRetry, sessionId, clinicalInputPreview, lastRequest,
 }: ResultsPanelProps) => {
   const [verified, setVerified] = useState(false);
   const [copied, setCopied] = useState<"all" | "cpt" | "icd" | null>(null);
+  const [csvExported, setCsvExported] = useState(false);
   const [altOpen, setAltOpen] = useState(false);
   const [feedbackType, setFeedbackType] = useState<"positive" | "negative" | null>(null);
   const [feedbackSent, setFeedbackSent] = useState(false);
@@ -129,6 +133,18 @@ const ResultsPanel = ({
 
   const buildIcdOnly = () =>
     result.icd10_codes.map(c => c.code).join(", ");
+
+  const handleExportCsv = () => {
+    if (!result) return;
+    downloadCsv(result, lastRequest);
+    setCsvExported(true);
+    setTimeout(() => setCsvExported(false), 2500);
+  };
+
+  const handlePrint = () => {
+    if (!result) return;
+    openPrintView(result, lastRequest);
+  };
 
   const handleCopy = (type: "all" | "cpt" | "icd") => {
     const text = type === "all" ? buildFullCopyText()
@@ -256,6 +272,29 @@ const ResultsPanel = ({
           <label htmlFor="verify" className="text-sm text-foreground cursor-pointer">
             I have reviewed and verified these coding suggestions
           </label>
+        </div>
+
+        {/* Export / Print row */}
+        <div className="grid grid-cols-2 gap-2 mb-2">
+          <Button
+            onClick={handleExportCsv}
+            variant="outline"
+            size="sm"
+            className="text-xs"
+          >
+            {csvExported
+              ? <><Check className="mr-1 h-3 w-3 text-[#16A34A]" /> Exported!</>
+              : <><Download className="mr-1 h-3 w-3" /> Export CSV</>
+            }
+          </Button>
+          <Button
+            onClick={handlePrint}
+            variant="outline"
+            size="sm"
+            className="text-xs"
+          >
+            <Printer className="mr-1 h-3 w-3" /> Print / Save PDF
+          </Button>
         </div>
 
         {/* Three copy options */}

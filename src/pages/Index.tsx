@@ -166,6 +166,7 @@ const Index = () => {
             onRetry={handleRetry}
             sessionId={sessionId.current}
             clinicalInputPreview={lastClinicalInput.substring(0, 100)}
+            lastRequest={lastRequest}
           />
         </div>
 
