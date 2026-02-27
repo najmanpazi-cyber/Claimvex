@@ -9,6 +9,7 @@ import type { CodingResult, CodingError } from "@/types/coding";
 import { supabase } from "@/integrations/supabase/client";
 
 import CleanClaimIndicator from "@/components/results/CleanClaimIndicator";
+import { CptTooltip } from "@/components/CptTooltip";
 import PrimaryCodeCard from "@/components/results/PrimaryCodeCard";
 import AddOnCodes from "@/components/results/AddOnCodes";
 import DiagnosisCodes from "@/components/results/DiagnosisCodes";
@@ -233,7 +234,9 @@ const ResultsPanel = ({
               {result.alternatives.map((alt, i) => (
                 <div key={i} className="rounded-lg border border-[#E5E7EB] p-3">
                   <p className="text-sm font-medium">
-                    <span className="font-mono font-semibold text-[#111827]">{alt.cpt_code}</span>
+                    <span className="font-mono font-semibold text-[#111827]">
+                      <CptTooltip code={alt.cpt_code}>{alt.cpt_code}</CptTooltip>
+                    </span>
                     <span className="ml-2 text-[#6B7280]">{alt.description}</span>
                   </p>
                   <p className="mt-1 text-xs text-[#6B7280]">

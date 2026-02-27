@@ -1,5 +1,6 @@
 import { ThumbsUp, ThumbsDown, Clock, TrendingUp } from "lucide-react";
 import type { PrimaryCode } from "@/types/coding";
+import { CptTooltip } from "@/components/CptTooltip";
 
 interface PrimaryCodeCardProps {
   code: PrimaryCode;
@@ -31,7 +32,7 @@ const PrimaryCodeCard = ({ code, feedbackType, onFeedback }: PrimaryCodeCardProp
       <div className="flex items-start justify-between gap-2">
         <div className="min-w-0">
           <p className="font-mono text-3xl font-bold tracking-tight text-[#111827]">
-            {code.cpt_code}
+            <CptTooltip code={code.cpt_code}>{code.cpt_code}</CptTooltip>
           </p>
           <p className="mt-1 text-sm leading-snug text-[#6B7280]">{code.description}</p>
         </div>

@@ -1,5 +1,6 @@
 import type { Modifier } from "@/types/coding";
 import { Info } from "lucide-react";
+import { ModifierTooltip } from "@/components/CptTooltip";
 
 interface ModifierBadgesProps {
   modifiers: Modifier[];
@@ -23,7 +24,9 @@ const ModifierBadges = ({ modifiers }: ModifierBadgesProps) => {
             className="rounded-lg border border-[#FDE68A] bg-[#FFFBEB] p-3"
           >
             <div className="flex items-center gap-2">
-              <span className="font-mono text-sm font-bold text-[#92400E]">{mod.code}</span>
+              <span className="font-mono text-sm font-bold text-[#92400E]">
+                <ModifierTooltip code={mod.code}>{mod.code}</ModifierTooltip>
+              </span>
               <span className="text-sm font-medium text-[#111827]">{mod.name}</span>
             </div>
             <p className="mt-1 text-xs leading-relaxed text-[#78350F]">{mod.reason}</p>
