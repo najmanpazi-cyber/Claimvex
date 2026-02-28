@@ -83,6 +83,26 @@ const RULE_DESCRIPTIONS: Record<string, { user: string; internal: string }> = {
 const POLICY_ANCHOR = "NCCI PTP Edits Q1 2026";
 
 // ---------------------------------------------------------------------------
+// ACC-02 structured_fields adapter
+// ---------------------------------------------------------------------------
+
+export function fromStructuredFields(sf: {
+  laterality: string;
+  cpt_codes_submitted: string[];
+  modifiers_present: Record<string, string[]>;
+  payer_type: string;
+  [key: string]: unknown;
+}): PtpValidatorInput {
+  return {
+    laterality: sf.laterality,
+    cpt_codes_submitted: sf.cpt_codes_submitted,
+    modifiers_present: sf.modifiers_present,
+    payer_type: (sf.payer_type === "commercial" || sf.payer_type === "medicare")
+      ? sf.payer_type : "unknown",
+  };
+}
+
+// ---------------------------------------------------------------------------
 // Laterality helpers
 // ---------------------------------------------------------------------------
 

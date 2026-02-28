@@ -4,6 +4,7 @@ import {
   findPtpConflicts,
   getCodeLaterality,
   isSameJoint,
+  fromStructuredFields,
   type PtpValidatorInput,
 } from "@/validators/ptpValidator";
 import { buildTestCodingOutput } from "@/utils/applyPtpValidation";
@@ -295,5 +296,35 @@ describe("PTP Validator — ACC-04", () => {
     expect(isSameJoint("not_specified", "left")).toBe(true);
     expect(isSameJoint("right", "not_specified")).toBe(true);
     expect(isSameJoint("not_specified", "not_specified")).toBe(true);
+  });
+
+  // =========================================================================
+  // Test 14: ACC-02 structured_fields adapter (ACC02-001)
+  // =========================================================================
+  it("14. accepts full ACC-02 structured_fields via adapter (ACC02-001)", () => {
+    const structuredFields = {
+      laterality: "right",
+      patient_type: "established",
+      setting: "outpatient",
+      payer_type: "commercial",
+      global_period_status: "none",
+      global_period_surgery_date: null,
+      global_period_surgery_cpt: null,
+      units_of_service: { "27447": 1, "29881": 1 },
+      modifiers_present: {},
+      cpt_codes_submitted: ["29881", "27447"],
+      icd10_codes: ["M17.11"],
+      physician_id: "PHY-001",
+    };
+
+    const input = fromStructuredFields(structuredFields);
+    const result = validatePtp(input);
+
+    const r311 = result.rule_evaluations.find((re) => re.rule_id === "R-3.1.1");
+    expect(r311).toBeDefined();
+    expect(r311!.trigger_matched).toBe(true);
+    expect(r311!.suppressed_code).toBe("29881");
+    expect(result.suppressed_codes).toHaveLength(1);
+    expect(result.suppressed_codes[0].cpt_code).toBe("29881");
   });
 });
