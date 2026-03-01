@@ -1,0 +1,126 @@
+{
+  "rules": [
+    {
+      "rule_id": "R-3.5.1",
+      "description": "Missing laterality for unilateral orthopedic procedure",
+      "action": "block",
+      "severity": "Critical",
+      "domain": "DOC_SUFFICIENCY",
+      "laterality_modifiers": ["LT", "RT", "50"],
+      "em_code_ranges": [
+        { "start": "99202", "end": "99215" },
+        { "start": "99221", "end": "99236" },
+        { "start": "99281", "end": "99285" },
+        { "start": "99241", "end": "99255" }
+      ],
+      "missing_info_keys": ["laterality"],
+      "prompt_template": "Specify laterality: left, right, or bilateral",
+      "policy_anchor": "CMS-1500 guidelines, CPT laterality modifier requirements"
+    },
+    {
+      "rule_id": "R-3.5.2",
+      "description": "ICD-10 laterality contradicts CPT laterality context",
+      "action": "block",
+      "severity": "Critical",
+      "domain": "DOC_SUFFICIENCY",
+      "missing_info_keys": [],
+      "prompt_template": "ICD-10 {icd_code} indicates {icd_laterality} but procedure laterality is {cpt_laterality} — verify correct diagnosis code",
+      "policy_anchor": "ICD-10-CM Official Guidelines, Section I.A.1 — laterality consistency"
+    },
+    {
+      "rule_id": "R-3.5.3",
+      "description": "Fracture care missing approach/technique",
+      "action": "warn",
+      "severity": "Medium",
+      "domain": "DOC_SUFFICIENCY",
+      "missing_info_keys": ["approach"],
+      "prompt_template": "Specify fracture treatment approach: closed, closed with manipulation, open, or percutaneous",
+      "policy_anchor": "CPT fracture care coding guidelines — approach determines code selection"
+    },
+    {
+      "rule_id": "R-3.5.4",
+      "description": "Outpatient rule-out/probable/suspected diagnosis",
+      "action": "block",
+      "severity": "High",
+      "domain": "DOC_SUFFICIENCY",
+      "outpatient_settings": ["office", "outpatient", "ASC"],
+      "missing_info_keys": ["confirmed_diagnosis"],
+      "prompt_template": "Outpatient setting requires confirmed diagnosis — replace rule-out language with confirmed condition or presenting symptom code",
+      "policy_anchor": "ICD-10-CM Official Guidelines, Section IV — outpatient coding guidelines"
+    },
+    {
+      "rule_id": "R-3.5.5",
+      "description": "Missing anatomic specificity",
+      "action": "warn",
+      "severity": "Medium",
+      "domain": "DOC_SUFFICIENCY",
+      "missing_info_keys": ["anatomic_site"],
+      "prompt_template": "Specify anatomic site with sufficient detail for code selection",
+      "policy_anchor": "CPT coding guidelines — anatomic specificity requirements"
+    }
+  ],
+  "icd10_laterality_table": {
+    "M17.0":    "bilateral",
+    "M17.11":   "right",
+    "M17.12":   "left",
+    "M17.9":    "unspecified",
+    "M16.11":   "right",
+    "M16.12":   "left",
+    "M16.9":    "unspecified",
+    "M19.011":  "right",
+    "M19.012":  "left",
+    "M19.071":  "right",
+    "M19.90":   "unspecified",
+    "M75.10":   "unspecified",
+    "M75.111":  "right",
+    "M75.112":  "left",
+    "M87.051":  "right",
+    "M87.052":  "left",
+    "M23.20":   "unspecified",
+    "M23.211":  "right",
+    "M25.511":  "right",
+    "M25.551":  "right",
+    "M25.561":  "right",
+    "M25.772":  "left",
+    "M94.261":  "right",
+    "S52.501A": "unspecified",
+    "S52.509A": "unspecified",
+    "S72.002A": "left",
+    "S82.101A": "right",
+    "S82.102A": "left",
+    "S83.511A": "right",
+    "S86.011A": "right",
+    "S92.351A": "right",
+    "T14.8":    "not_applicable",
+    "T84.54XA": "not_applicable",
+    "T84.84XA": "not_applicable",
+    "Z96.641":  "right",
+    "Z96.642":  "left",
+    "Z96.651":  "right",
+    "Z96.652":  "left",
+    "Z96.659":  "unspecified"
+  },
+  "fracture_cpt_codes": [
+    "25600", "25605", "25607", "25608", "25609",
+    "27750", "27752", "27758", "27759",
+    "28470"
+  ],
+  "rule_out_keywords": [
+    "rule out", "rule-out", "ruleout",
+    "suspected", "suspect",
+    "probable", "probably",
+    "possible", "possibly",
+    "questionable",
+    "consistent with",
+    "likely",
+    "cannot exclude",
+    "to exclude"
+  ],
+  "injection_minor_procedure_codes": [
+    "20610", "20611", "20605", "20553"
+  ],
+  "generic_site_patterns": [
+    "^joint$", "^extremity$", "^limb$", "^bone$",
+    "^the knee$", "^the hip$", "^the shoulder$", "^the ankle$"
+  ]
+}
