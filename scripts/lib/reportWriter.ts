@@ -67,7 +67,7 @@ export function buildRunMetadata(projectRoot: string, overrides: Partial<RunMeta
   let gitSha = "unavailable";
   try {
     gitSha = execSync("git rev-parse HEAD", { cwd: projectRoot }).toString().trim();
-  } catch {}
+  } catch { /* git sha unavailable */ }
 
   return {
     run_timestamp: new Date().toISOString(),

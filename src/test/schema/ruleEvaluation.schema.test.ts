@@ -58,7 +58,7 @@ describe("validateRuleEvaluation", () => {
 
   it("rejects invalid action_type enum value", () => {
     const result = validateRuleEvaluation(
-      makeEval({ action_type: "deny" as any })
+      makeEval({ action_type: "deny" as unknown as "block" })
     );
     expect(result.valid).toBe(false);
     expect(result.errors.length).toBeGreaterThan(0);

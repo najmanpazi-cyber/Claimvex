@@ -18,23 +18,23 @@ const PHI_PATTERNS: { label: string; regex: RegExp }[] = [
   // 2b. ZIP codes (5-digit standalone — technically an identifier)
   { label: "ZIP code",            regex: /\b\d{5}(?:-\d{4})?\b/ },
   // 3. Dates — DOB prefixed
-  { label: "Date of birth",       regex: /\b(?:dob|date of birth|born|birthdate)\s*[:\-]?\s*\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}/i },
+  { label: "Date of birth",       regex: /\b(?:dob|date of birth|born|birthdate)\s*[:-]?\s*\d{1,2}[/-]\d{1,2}[/-]\d{2,4}/i },
   // 3b. Full month dates (admission dates, procedure dates)
   { label: "Specific date",       regex: /\b(?:january|february|march|april|may|june|july|august|september|october|november|december)\s+\d{1,2},?\s+\d{4}/i },
   // 3c. Numeric dates
-  { label: "Specific date",       regex: /\b\d{1,2}[\/\-]\d{1,2}[\/\-]\d{4}\b/ },
+  { label: "Specific date",       regex: /\b\d{1,2}[/-]\d{1,2}[/-]\d{4}\b/ },
   // 4. Phone numbers (also catches fax numbers — same format)
-  { label: "Phone/fax number",    regex: /\b(?:\+?1[-.\s]?)?\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4}\b/ },
+  { label: "Phone/fax number",    regex: /\b(?:\+?1[.\s-]?)?\(?\d{3}\)?[.\s-]\d{3}[.\s-]\d{4}\b/ },
   // 6. Email addresses
-  { label: "Email address",       regex: /\b[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}\b/ },
+  { label: "Email address",       regex: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b/ },
   // 7. Social Security Numbers
   { label: "SSN",                 regex: /\b\d{3}[-\s]?\d{2}[-\s]?\d{4}\b/ },
   // 8. Medical Record Numbers
-  { label: "MRN / chart number",  regex: /\b(?:mrn|mr#|mr\s*#|medical\s*record|chart\s*(?:#|no\.?|num|number)|med\.?\s*rec\.?)\s*[:\-#]?\s*[A-Z0-9\-]{4,}/i },
+  { label: "MRN / chart number",  regex: /\b(?:mrn|mr#|mr\s*#|medical\s*record|chart\s*(?:#|no\.?|num|number)|med\.?\s*rec\.?)\s*[:#-]?\s*[A-Z0-9-]{4,}/i },
   // 9. Health plan beneficiary / Insurance member ID
-  { label: "Insurance/member ID", regex: /\b(?:member\s*(?:id|#|no\.?)|insurance\s*(?:id|#|no\.?)|policy\s*(?:id|#|no\.?)|subscriber\s*id|group\s*(?:#|no\.?)|plan\s*(?:id|#)|beneficiary\s*(?:id|#))\s*[:\-#]?\s*[A-Z0-9\-]{4,}/i },
+  { label: "Insurance/member ID", regex: /\b(?:member\s*(?:id|#|no\.?)|insurance\s*(?:id|#|no\.?)|policy\s*(?:id|#|no\.?)|subscriber\s*id|group\s*(?:#|no\.?)|plan\s*(?:id|#)|beneficiary\s*(?:id|#))\s*[:#-]?\s*[A-Z0-9-]{4,}/i },
   // 10. Account numbers
-  { label: "Account number",      regex: /\b(?:account|acct\.?|acct\s*(?:#|no\.?|number)|billing\s*(?:#|id))\s*[:\-#]?\s*[A-Z0-9\-]{4,}/i },
+  { label: "Account number",      regex: /\b(?:account|acct\.?|acct\s*(?:#|no\.?|number)|billing\s*(?:#|id))\s*[:#-]?\s*[A-Z0-9-]{4,}/i },
   // 18. Age over 89 (HIPAA specifies ages 90+ are identifiers)
   { label: "Age over 89",         regex: /\b(?:9[0-9]|1[0-9]{2})\s*[-\s]?year\s*[-\s]?old/i },
 ];

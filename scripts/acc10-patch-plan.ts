@@ -13,7 +13,7 @@ interface Scenario {
   domain: string;
   clinical_vignette: string;
   clinical_input: string;
-  structured_fields: Record<string, any>;
+  structured_fields: Record<string, unknown>;
   expected_rule_hits: string[];
   expected_action: string;
   expected_clean_claim_ready: boolean;
@@ -23,7 +23,7 @@ interface Scenario {
   edge_case_tags: string[];
   domains_tested: string[];
   rationale: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface PatchEntry {

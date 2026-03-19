@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // ACC-10: Analyze remaining failures after Phase 2a enrichment
 import * as fs from "fs";
 import * as path from "path";

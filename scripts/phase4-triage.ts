@@ -1,4 +1,5 @@
 #!/usr/bin/env bun
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { readFileSync } from "fs";
 
 const data = JSON.parse(readFileSync("artifacts/acc09-redteam-results.json", "utf-8"));

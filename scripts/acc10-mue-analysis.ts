@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // ACC-10: MUE at-limit-1 firing analysis
 import * as fs from "fs";
 import * as path from "path";

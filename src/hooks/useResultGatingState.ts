@@ -153,7 +153,6 @@ export function useResultGatingState(
   }, [output]);
 
   // Reset acknowledgment and checklist when output changes
-  const prevOutputRef = useMemo(() => output, [output]);
   useMemo(() => {
     if (output) {
       setReviewAcknowledged(false);
@@ -161,7 +160,7 @@ export function useResultGatingState(
         (output.force_review_items ?? []).map(() => false)
       );
     }
-  }, [prevOutputRef]);
+  }, [output]);
 
   const allItemsChecked = useMemo(() => {
     if (!derived) return false;

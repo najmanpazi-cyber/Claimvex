@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // ACC-14 Phase 4: Coverage gap analysis
 import * as fs from "fs";
 import * as path from "path";

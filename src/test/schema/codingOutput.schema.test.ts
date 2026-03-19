@@ -218,7 +218,7 @@ describe("validateCodingOutput", () => {
   it("rejects rule_evaluation with wrong domain", () => {
     const output = makeValidOutput({
       rule_evaluations: ALL_RULE_IDS.map((id) =>
-        makeRuleEvaluation(id, id === "R-3.1.1" ? { domain: "MUE" as any } : {})
+        makeRuleEvaluation(id, id === "R-3.1.1" ? { domain: "MUE" as unknown as "PTP" } : {})
       ),
     });
     const result = validateCodingOutput(output);

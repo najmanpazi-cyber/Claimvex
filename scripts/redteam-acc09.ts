@@ -511,7 +511,7 @@ function generateJsonArtifact(
   const counts = countClassifications(results);
 
   const domainNames: RuleDomain[] = ["PTP", "MUE", "MODIFIER", "GLOBAL", "DOC_SUFFICIENCY"];
-  const domainSummary: Record<string, any> = {};
+  const domainSummary: Record<string, { total: number; pass: number }> = {};
   for (const domain of domainNames) {
     const domainResults = results.filter((r) => {
       const sc = scenarios.find((s) => s.id === r.scenario_id)!;

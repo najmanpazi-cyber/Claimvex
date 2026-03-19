@@ -67,18 +67,19 @@ const Index = () => {
           addEntry(lastRequest, codingResult);
         }
       }
-    } catch (err: any) {
-      logger.error("API call failed", { error: err?.message });
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Network error";
+      logger.error("API call failed", { error: message });
       setError({
         error: true,
         error_code: "NETWORK_ERROR",
-        error_message: err?.message || "Network error",
+        error_message: message,
         user_message: "Something went wrong. Please try again.",
       });
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [addEntry, lastRequest]);
 
   const handleHistorySelect = useCallback((entry: HistoryEntry) => {
     setResult(entry.result);

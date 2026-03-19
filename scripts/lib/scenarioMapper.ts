@@ -88,21 +88,21 @@ export function runAllValidators(sf: ScenarioStructuredFields): ValidatorRunResu
   const allMissingInfo: string[] = [];
 
   // 1. PTP
-  const ptpInput = ptpFromSF(sf as any);
+  const ptpInput = ptpFromSF(sf as unknown as Parameters<typeof ptpFromSF>[0]);
   const ptpResult = validatePtp(ptpInput);
   allRuleEvals.push(...ptpResult.rule_evaluations);
   allSuppressed.push(...ptpResult.suppressed_codes);
   allWarnings.push(...ptpResult.warnings);
 
   // 2. MUE
-  const mueInput = mueFromSF(sf as any);
+  const mueInput = mueFromSF(sf as unknown as Parameters<typeof mueFromSF>[0]);
   const mueResult = validateMue(mueInput);
   allRuleEvals.push(...mueResult.rule_evaluations);
   allSuppressed.push(...mueResult.suppressed_codes);
   allWarnings.push(...mueResult.warnings);
 
   // 3. MODIFIER
-  const modInput = modFromSF(sf as any);
+  const modInput = modFromSF(sf as unknown as Parameters<typeof modFromSF>[0]);
   const modResult = validateModifiers(modInput);
   allRuleEvals.push(...modResult.rule_evaluations);
   allSuppressed.push(...modResult.suppressed_codes);
@@ -110,7 +110,7 @@ export function runAllValidators(sf: ScenarioStructuredFields): ValidatorRunResu
   allForceReview.push(...modResult.force_review_items);
 
   // 4. GLOBAL
-  const globalInput = globalFromSF(sf as any);
+  const globalInput = globalFromSF(sf as unknown as Parameters<typeof globalFromSF>[0]);
   const globalResult = validateGlobal(globalInput);
   allRuleEvals.push(...globalResult.rule_evaluations);
   allSuppressed.push(...globalResult.suppressed_codes);
@@ -118,7 +118,7 @@ export function runAllValidators(sf: ScenarioStructuredFields): ValidatorRunResu
   allForceReview.push(...globalResult.force_review_items);
 
   // 5. DOC_SUFFICIENCY
-  const docInput = docFromSF(sf as any);
+  const docInput = docFromSF(sf as unknown as Parameters<typeof docFromSF>[0]);
   const docResult = validateDocumentation(docInput);
   allRuleEvals.push(...docResult.rule_evaluations);
   allSuppressed.push(...docResult.suppressed_codes);
