@@ -8,7 +8,7 @@ export interface HistoryEntry {
   result: CodingResult;
 }
 
-const STORAGE_KEY = "claive_session_history";
+const STORAGE_KEY = "claimvex_session_history";
 const MAX_ENTRIES = 10;
 
 function loadHistory(): HistoryEntry[] {

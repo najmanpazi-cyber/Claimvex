@@ -4,7 +4,7 @@ description: Generate a weekly project status report from git history and codeba
 user_invocable: true
 ---
 
-Generate a weekly status report for Claive. Gather data from:
+Generate a weekly status report for ClaimVex. Gather data from:
 
 1. **Git log** (last 7 days): commits, authors, what changed
 2. **Test suite:** Run `bun test src/` and report pass/fail counts
@@ -16,7 +16,7 @@ Generate a weekly status report for Claive. Gather data from:
 Format as:
 
 ```
-Weekly Report — Claive
+Weekly Report — ClaimVex
 Week of [date]
 ══════════════════════════
 

@@ -42,7 +42,7 @@
 
 | Exclusion | Reason |
 |-----------|--------|
-| Spine surgery (22xxx, 630xx) | Separate specialty in Claive; own accuracy spec planned |
+| Spine surgery (22xxx, 630xx) | Separate specialty in ClaimVex; own accuracy spec planned |
 | Pain management (ESI, facet, RFA, SCS) | Separate specialty; distinct billing rules |
 | Sports medicine (PRP, biologics, concussion) | Separate specialty with experimental-coverage nuances |
 | Medicaid payer logic | State-variable rules; deferred to v2 |
@@ -464,7 +464,7 @@ Each criterion must be independently verifiable. ACC-01 passes when all items ar
 | 2 | **MUE data source**: Same as above — CMS publishes MUE quarterly, but integrating requires either direct file parsing or a licensed API. | Needs policy confirmation | Cannot implement unit-limit checks without data source |
 | 3 | **MAC-specific bilateral format rules**: Medicare bilateral billing format (-50 vs -LT/-RT on separate lines) varies by MAC jurisdiction. Do we maintain a MAC lookup table, or always warn and defer to the user? | Needs policy confirmation | Affects Rule 3.3 and Section 4.2 bilateral handling |
 | 4 | **-25 documentation threshold**: The line between "separately identifiable" and "part of the procedure" is inherently clinical. For beta, do we block-on-missing-documentation or warn-only? Current spec says force-review. | Needs policy confirmation | Determines aggressiveness of -25 enforcement |
-| 5 | **Global period tracking**: Claive currently receives global period status as a user-provided context field. Should we build a session-based global period tracker (remembering prior surgeries), or rely on user input for beta? | Needs policy confirmation | Affects reliability of Rules 3.4.1 and 3.4.4 |
+| 5 | **Global period tracking**: ClaimVex currently receives global period status as a user-provided context field. Should we build a session-based global period tracker (remembering prior surgeries), or rely on user input for beta? | Needs policy confirmation | Affects reliability of Rules 3.4.1 and 3.4.4 |
 | 6 | **Commercial payer coverage policies**: Commercial payers have their own coverage policies (equivalent to Medicare LCDs). Do we integrate any commercial payer policy databases in v1, or treat all commercial payers as a single rule set? | Needs policy confirmation | Scope of payer-configurable logic |
 | 7 | **Rule override workflow**: When a deterministic rule fires a `block`, can the user override it with an attestation (e.g., "I have documentation supporting this")? If so, do we log the override for compliance? | Needs policy confirmation | UX and compliance implications |
 | 8 | **Diagnosis grouping divergence**: Trauma fracture care has different documentation requirements (mechanism of injury, fragment count) vs. degenerative joint disease (failed conservative treatment, duration). Do we implement separate documentation checklists per grouping now, or defer sub-grouping to v2? | Needs policy confirmation | Affects Section 5.1 checklist granularity |

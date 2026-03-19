@@ -1,6 +1,6 @@
 # Accuracy Execution Board
 
-> Claive CPT Coding Assistant — Orthopedics v1 Beta
+> ClaimVex CPT Coding Assistant — Orthopedics v1 Beta
 > Last updated: 2026-03-07
 
 ---

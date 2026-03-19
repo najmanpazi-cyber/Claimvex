@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://claive.ai/schemas/codingOutput.schema.json",
+  "$id": "https://claimvex.ai/schemas/codingOutput.schema.json",
   "title": "DeterministicCodingOutput",
-  "description": "Complete output contract for the Claive deterministic rule engine (ACC-03).",
+  "description": "Complete output contract for the ClaimVex deterministic rule engine (ACC-03).",
   "type": "object",
   "required": [
     "suggested_codes",

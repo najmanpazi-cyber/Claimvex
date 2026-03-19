@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://claive.ai/schemas/ruleEvaluation.schema.json",
+  "$id": "https://claimvex.ai/schemas/ruleEvaluation.schema.json",
   "title": "RuleEvaluation",
-  "description": "A single deterministic rule evaluation result from the Claive rule engine.",
+  "description": "A single deterministic rule evaluation result from the ClaimVex rule engine.",
   "type": "object",
   "required": [
     "rule_id",

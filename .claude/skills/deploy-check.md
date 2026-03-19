@@ -16,7 +16,7 @@ Run post-deployment verification:
 Output:
 
 ```
-Deploy Check — Claive
+Deploy Check — ClaimVex
 ─────────────────────
 Build:     [pass/fail]
 Tests:     [X passed, Y failed]

@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import type { ReactNode } from "react";
 
-const PRODUCT_NAME = "Claive";
+const PRODUCT_NAME = "ClaimVex";
 
 interface HeaderProps {
   historyDrawer?: ReactNode;
@@ -24,7 +24,7 @@ const Header = ({ historyDrawer }: HeaderProps) => {
           aria-label="Back to home"
         >
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-xs">
-            C
+            CV
           </div>
           <span className="text-base font-bold tracking-tight text-foreground sm:text-lg">
             {PRODUCT_NAME}
@@ -34,7 +34,7 @@ const Header = ({ historyDrawer }: HeaderProps) => {
         <div className="h-4 w-px shrink-0 bg-border" />
 
         <span className="hidden shrink-0 text-sm text-muted-foreground sm:inline">
-          Orthopedic Coding Assistant
+          CPT Coding Validation Engine
         </span>
       </div>
 

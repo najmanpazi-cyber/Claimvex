@@ -11,7 +11,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 /* ─── SEO meta is set in index.html ─── */
 
-const PRODUCT_NAME = "Claive";
+const PRODUCT_NAME = "ClaimVex";
 
 /* ─── DATA ─────────────────────────────────────────────── */
 
@@ -42,7 +42,7 @@ const steps = [
   {
     step: "02",
     title: "AI analyzes in 3–5 seconds",
-    desc: "Claive checks your documentation against orthopedic CPT rules, NCCI bundles, modifier requirements, and your payer's specific policies.",
+    desc: "ClaimVex checks your documentation against orthopedic CPT rules, NCCI bundles, modifier requirements, and your payer's specific policies.",
   },
   {
     step: "03",
@@ -73,30 +73,30 @@ const personas = [
 ];
 
 const comparison = [
-  { feature: "Orthopedic-specific CPT rules",         claive: true,  manual: false, codify: false, gpt: false },
-  { feature: "NCCI bundling checks",                  claive: true,  manual: false, codify: true,  gpt: false },
-  { feature: "Payer-aware modifier rules (Medicare)",  claive: true,  manual: false, codify: false, gpt: false },
-  { feature: "Global period conflict detection",       claive: true,  manual: false, codify: false, gpt: false },
-  { feature: "ICD-10 sequencing enforcement",          claive: true,  manual: false, codify: false, gpt: false },
-  { feature: "Add-on code detection",                  claive: true,  manual: false, codify: false, gpt: false },
-  { feature: "RVU display",                            claive: true,  manual: false, codify: true,  gpt: false },
-  { feature: "Missing documentation alerts",           claive: true,  manual: false, codify: false, gpt: false },
-  { feature: "Results in under 5 seconds",             claive: true,  manual: false, codify: true,  gpt: true  },
-  { feature: "No EHR integration required",            claive: true,  manual: true,  codify: true,  gpt: true  },
+  { feature: "Orthopedic-specific CPT rules",         claimvex: true,  manual: false, codify: false, gpt: false },
+  { feature: "NCCI bundling checks",                  claimvex: true,  manual: false, codify: true,  gpt: false },
+  { feature: "Payer-aware modifier rules (Medicare)",  claimvex: true,  manual: false, codify: false, gpt: false },
+  { feature: "Global period conflict detection",       claimvex: true,  manual: false, codify: false, gpt: false },
+  { feature: "ICD-10 sequencing enforcement",          claimvex: true,  manual: false, codify: false, gpt: false },
+  { feature: "Add-on code detection",                  claimvex: true,  manual: false, codify: false, gpt: false },
+  { feature: "RVU display",                            claimvex: true,  manual: false, codify: true,  gpt: false },
+  { feature: "Missing documentation alerts",           claimvex: true,  manual: false, codify: false, gpt: false },
+  { feature: "Results in under 5 seconds",             claimvex: true,  manual: false, codify: true,  gpt: true  },
+  { feature: "No EHR integration required",            claimvex: true,  manual: true,  codify: true,  gpt: true  },
 ];
 
 const faqs = [
   {
-    q: "Is Claive HIPAA compliant?",
-    a: "Claive is architected to operate on de-identified clinical information only. We never ask for — or collect — patient names, dates of birth, MRNs, SSNs, or any of the 18 HIPAA-defined identifiers. The tool includes a live identifier detector that warns you before any flagged text can be submitted. De-identified data is not subject to HIPAA under the Safe Harbor method, so no BAA is required for the MVP. For Phase 2 (user accounts + EHR integrations), we will establish a formal BAA. Note: this is our working approach, not legal advice — validate with your compliance team.",
+    q: "Is ClaimVex HIPAA compliant?",
+    a: "ClaimVex is architected to operate on de-identified clinical information only. We never ask for — or collect — patient names, dates of birth, MRNs, SSNs, or any of the 18 HIPAA-defined identifiers. The tool includes a live identifier detector that warns you before any flagged text can be submitted. De-identified data is not subject to HIPAA under the Safe Harbor method, so no BAA is required for the MVP. For Phase 2 (user accounts + EHR integrations), we will establish a formal BAA. Note: this is our working approach, not legal advice — validate with your compliance team.",
   },
   {
-    q: "Does Claive replace my coder?",
-    a: "No — and we're explicit about this. Claive is an augmentative tool. It provides AI-generated suggestions that your certified coder reviews and verifies before submission. Think of it as a highly trained second opinion that catches what's easy to miss: wrong modifiers, missed add-on codes, NCCI bundles, global period conflicts. Your coder stays in control. The verification checkbox is mandatory before any code can be copied.",
+    q: "Does ClaimVex replace my coder?",
+    a: "No — and we're explicit about this. ClaimVex is an augmentative tool. It provides AI-generated suggestions that your certified coder reviews and verifies before submission. Think of it as a highly trained second opinion that catches what's easy to miss: wrong modifiers, missed add-on codes, NCCI bundles, global period conflicts. Your coder stays in control. The verification checkbox is mandatory before any code can be copied.",
   },
   {
     q: "How accurate is it?",
-    a: "Claive has been tested across 5 orthopedic coding scenarios ranging from single-procedure office visits to complex spine fusion cases (TLIF L4-L5). It correctly handled multi-procedure bundling, modifier -25 with E/M same-day, and add-on code selection in all tests. Confidence scoring (High / Medium / Low) tells you exactly when to apply extra scrutiny. Accuracy depends on documentation quality — the more detail in your notes, the higher the confidence.",
+    a: "ClaimVex has been tested across 5 orthopedic coding scenarios ranging from single-procedure office visits to complex spine fusion cases (TLIF L4-L5). It correctly handled multi-procedure bundling, modifier -25 with E/M same-day, and add-on code selection in all tests. Confidence scoring (High / Medium / Low) tells you exactly when to apply extra scrutiny. Accuracy depends on documentation quality — the more detail in your notes, the higher the confidence.",
   },
   {
     q: "What payer types does it support?",
@@ -217,7 +217,7 @@ export default function Landing() {
       <header className="sticky top-0 z-50 border-b border-border/50 bg-background/95 backdrop-blur-sm px-6 py-3.5">
         <div className="mx-auto flex max-w-5xl items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-sm">C</div>
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-sm">CV</div>
             <span className="text-lg font-bold tracking-tight">{PRODUCT_NAME}</span>
             <Badge variant="secondary" className="text-[10px] font-semibold">Beta</Badge>
           </div>
@@ -257,7 +257,7 @@ export default function Landing() {
               </h1>
 
               <p className="mb-8 text-lg leading-relaxed text-muted-foreground animate-fade-in-up" style={{ animationDelay: "160ms", animationFillMode: "both" }}>
-                Claive analyzes your de-identified clinical notes and returns orthopedic-specific CPT codes,
+                ClaimVex analyzes your de-identified clinical notes and returns orthopedic-specific CPT codes,
                 ICD-10 pairings, modifier recommendations, and payer-aware guidance — in under 5 seconds.
                 No EHR integration. No setup. Just paste and go.
               </p>
@@ -268,7 +268,7 @@ export default function Landing() {
                   size="lg"
                   className="bg-primary text-primary-foreground hover:bg-primary/90 px-8"
                 >
-                  Try Claive Free <ArrowRight className="ml-2 h-4 w-4" />
+                  Try ClaimVex Free <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
                 <span className="text-sm text-muted-foreground">Beta access · No account required</span>
               </div>
@@ -331,7 +331,7 @@ export default function Landing() {
             $7,000 left on the table. Multiply that across 200 claims a month and you have a six-figure
             revenue leak. The problem isn't your coders — it's that orthopedic CPT rules are genuinely
             complex: laterality, NCCI bundles, global periods, add-on codes, payer-specific modifier logic.
-            Generic tools don't know these rules. Manual lookup is too slow. Claive was built specifically for this.
+            Generic tools don't know these rules. Manual lookup is too slow. ClaimVex was built specifically for this.
           </p>
         </div>
       </section>
@@ -404,16 +404,16 @@ export default function Landing() {
       {/* ══ COMPARISON TABLE ════════════════════════════════ */}
       <section id="compare" className="border-b border-border px-6 py-16">
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-2 text-center text-2xl font-bold">How Claive compares</h2>
+          <h2 className="mb-2 text-center text-2xl font-bold">How ClaimVex compares</h2>
           <p className="mb-10 text-center text-sm text-muted-foreground">
-            Manual lookup, Codify by AAPC, and generic AI weren't built for this problem. Claive was.
+            Manual lookup, Codify by AAPC, and generic AI weren't built for this problem. ClaimVex was.
           </p>
           <div className="overflow-x-auto rounded-xl border border-border">
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-border bg-muted">
                   <th className="py-3 pl-5 pr-4 text-left text-xs font-semibold text-foreground/80">Feature</th>
-                  <th className="px-4 py-3 text-center text-xs font-bold text-primary">Claive</th>
+                  <th className="px-4 py-3 text-center text-xs font-bold text-primary">ClaimVex</th>
                   <th className="px-4 py-3 text-center text-xs font-semibold text-muted-foreground">Manual / Google</th>
                   <th className="px-4 py-3 text-center text-xs font-semibold text-muted-foreground">Codify AAPC</th>
                   <th className="px-4 py-3 text-center text-xs font-semibold text-muted-foreground">Generic AI</th>
@@ -423,7 +423,7 @@ export default function Landing() {
                 {comparison.map((row, i) => (
                   <tr key={row.feature} className={`border-b border-border ${i % 2 === 0 ? "bg-card" : "bg-muted/50"}`}>
                     <td className="py-3 pl-5 pr-4 text-xs text-foreground/80">{row.feature}</td>
-                    <td className="px-4 py-3 text-center"><CheckIcon yes={row.claive} /></td>
+                    <td className="px-4 py-3 text-center"><CheckIcon yes={row.claimvex} /></td>
                     <td className="px-4 py-3 text-center"><CheckIcon yes={row.manual} /></td>
                     <td className="px-4 py-3 text-center"><CheckIcon yes={row.codify} /></td>
                     <td className="px-4 py-3 text-center"><CheckIcon yes={row.gpt} /></td>
@@ -445,12 +445,12 @@ export default function Landing() {
           <div className="grid gap-6 sm:grid-cols-3">
             {[
               {
-                quote: "The modifier logic alone is worth it. I used to spend 10–15 minutes looking up -25 scenarios for same-day E/M. Claive gets it right in seconds and explains the reasoning.",
+                quote: "The modifier logic alone is worth it. I used to spend 10–15 minutes looking up -25 scenarios for same-day E/M. ClaimVex gets it right in seconds and explains the reasoning.",
                 name: "CPC-Certified Coder",
                 role: "3-Provider Orthopedic Practice · Florida",
               },
               {
-                quote: "We had a 14% denial rate on arthroscopy codes. After running our encounters through Claive, we caught a systematic modifier error we'd been making for months.",
+                quote: "We had a 14% denial rate on arthroscopy codes. After running our encounters through ClaimVex, we caught a systematic modifier error we'd been making for months.",
                 name: "Billing Manager",
                 role: "Orthopedic Surgery Group · Texas",
               },
@@ -482,7 +482,7 @@ export default function Landing() {
           <h2 className="mb-2 text-center text-2xl font-bold">Simple, practice-sized pricing</h2>
           <p className="mb-10 text-center text-sm text-muted-foreground">
             ROI math: a 3-provider practice losing 10% to denials = ~$30K/year gone.
-            Claive at $299/mo = $3,600/year. That's 8x ROI.
+            ClaimVex at $299/mo = $3,600/year. That's 8x ROI.
           </p>
           <div className="grid gap-5 sm:grid-cols-3">
             {[
@@ -582,7 +582,7 @@ export default function Landing() {
             Start cutting coding errors today.
           </h2>
           <p className="mb-8 text-muted-foreground">
-            Paste your first clinical note and see exactly what Claive catches.
+            Paste your first clinical note and see exactly what ClaimVex catches.
             No account. No setup. No commitment.
           </p>
           <Button
@@ -590,7 +590,7 @@ export default function Landing() {
             size="lg"
             className="bg-primary px-10 text-primary-foreground hover:bg-primary/90"
           >
-            Try Claive Free <ArrowRight className="ml-2 h-4 w-4" />
+            Try ClaimVex Free <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
       </section>
@@ -600,7 +600,7 @@ export default function Landing() {
         <div className="mx-auto max-w-5xl">
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
             <div className="flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-xs">C</div>
+              <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-primary-foreground font-bold text-xs">CV</div>
               <span className="font-bold text-sm">{PRODUCT_NAME}</span>
               <Badge variant="secondary" className="text-[10px]">Beta</Badge>
             </div>

@@ -115,7 +115,7 @@ const ClinicalInput = ({ onSubmit, isLoading, textareaRef }: ClinicalInputProps)
         <div className="text-xs text-info-foreground leading-relaxed">
           <span className="font-semibold">De-identify before pasting.</span>{" "}
           Remove patient name, date of birth, MRN, SSN, phone number, and any other personal identifiers.
-          Clinical details (procedure, diagnosis, laterality, setting) are all Claive needs.
+          Clinical details (procedure, diagnosis, laterality, setting) are all ClaimVex needs.
         </div>
       </div>
 
@@ -303,7 +303,7 @@ const ClinicalInput = ({ onSubmit, isLoading, textareaRef }: ClinicalInputProps)
       </Button>
 
       <p className="text-xs text-muted-foreground">
-        Claive provides coding suggestions only. All codes must be verified by a qualified coder before claim submission.
+        ClaimVex provides coding suggestions only. All codes must be verified by a qualified coder before claim submission.
         By submitting, you confirm this input contains no patient identifiers. ★ = improves accuracy
       </p>
     </div>

@@ -1,8 +1,8 @@
-# CLAUDE.md — Claive Project Instructions
+# CLAUDE.md — ClaimVex Project Instructions
 
 ## What This Project Is
 
-Claive is an AI-powered CPT coding assistant for orthopedic practices. A medical coder or clinician pastes raw clinical notes and gets accurate CPT codes, ICD-10 codes, and modifiers back in 3–5 seconds — eliminating manual lookup errors and the revenue lost to undercoding or claim denials.
+ClaimVex is an AI-powered CPT coding assistant for orthopedic practices. A medical coder or clinician pastes raw clinical notes and gets accurate CPT codes, ICD-10 codes, and modifiers back in 3–5 seconds — eliminating manual lookup errors and the revenue lost to undercoding or claim denials.
 
 ## Tech Stack
 

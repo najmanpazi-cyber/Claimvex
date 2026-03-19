@@ -14,7 +14,7 @@ Analyze open issues and suggest priorities. Steps:
 Categorize everything found into:
 
 ```
-Issue Triage — Claive
+Issue Triage — ClaimVex
 ═════════════════════
 
 ## Critical (fix before shipping)

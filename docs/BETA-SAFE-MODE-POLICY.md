@@ -1,6 +1,6 @@
 # Beta Safe Mode Policy
 
-> **Claive Accuracy Layer — Orthopedics v1 Beta**
+> **ClaimVex Accuracy Layer — Orthopedics v1 Beta**
 > Effective: 2026-03-07
 > Owner: Execution Board
 > Status: Active

@@ -182,7 +182,7 @@ Every output must include `version_metadata` with these editions:
 | `mue_edition` | "Q1 2026" | CMS MUE Values, effective 2026-01-01 |
 | `cpt_edition` | "AMA CPT 2026" | AMA CPT Code Set 2026 |
 | `icd10_edition` | "FY2026" | ICD-10-CM FY2026, effective 2025-10-01 |
-| `ruleset_version` | "1.0.0" | Claive rule engine version |
+| `ruleset_version` | "1.0.0" | ClaimVex rule engine version |
 | `schema_version` | "1.0.0" | This schema contract version |
 
 ---

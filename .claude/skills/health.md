@@ -15,7 +15,7 @@ Run a quick health check on the project. Report status for each:
 Output a dashboard:
 
 ```
-Health Check — Claive
+Health Check — ClaimVex
 ─────────────────────
 Git:      [branch] | [clean/dirty] | [ahead/behind]
 Deps:     [ok/issues]

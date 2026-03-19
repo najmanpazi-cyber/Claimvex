@@ -1,10 +1,10 @@
 ---
 name: landing-copy
-description: Generate marketing copy for Claive's landing page and materials
+description: Generate marketing copy for ClaimVex's landing page and materials
 user_invocable: true
 ---
 
-Generate marketing copy for Claive. The user may specify what they need (hero section, feature list, FAQ, email, social post, etc.).
+Generate marketing copy for ClaimVex. The user may specify what they need (hero section, feature list, FAQ, email, social post, etc.).
 
 ## Product Facts (use these, don't invent claims)
 - AI-powered CPT coding assistant for orthopedic practices
