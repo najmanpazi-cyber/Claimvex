@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(export:*)",
+      "Bash(git:*)",
+      "Bash(bun run:*)",
+      "Bash(node:*)",
+      "Bash(bun:*)",
+      "Bash(bunx tsc:*)",
+      "Bash(ls:*)",
+      "Bash(python3:*)",
+      "Bash(C:/Users/najma/.bun/bin/bun:*)",
+      "Bash(gh:*)",
+      "Read(//c/Users/najma/.claude/**)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Check: did the assistant modify any files in src/utils/deidentify* or src/utils/phi* or any file containing 'PHI' or 'HIPAA' in its path? If yes, respond with 'BLOCK: HIPAA-related files were modified without explicit user approval. Ask the user to confirm.' If no HIPAA files were touched, respond with 'PASS'."
+          }
+        ]
+      }
+    ]
+  }
+}
