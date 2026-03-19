@@ -137,8 +137,21 @@ Store validations in Supabase `validations` table (RLS per user). History page w
 
 **IMPORTANT:** Run the migration SQL in Supabase SQL Editor before testing. The `validations` and `user_profiles` tables must exist.
 
-### Phase 5: Trial Management
+### Phase 5: Trial Management — COMPLETE
 30-day free trial tracked via `user_profiles.trial_start`. Banner from day 21. After day 30: validation form disabled, history/metrics remain accessible (ROI data convinces conversion). Soft gate with CTA to continue at $99/mo.
+
+**Completed files:**
+- `src/services/trialService.ts` — fetchTrialStatus calculates days remaining, expiry, paid bypass, badge config
+- `src/components/TrialBanner.tsx` — amber countdown banner, dismissable per session, mailto link
+- `src/components/TrialExpiredGate.tsx` — replaces form when trial expired, links to history + contact
+- `src/components/TrialBadge.tsx` — nav badge: teal (active trial), gray (expired), green (paid plan)
+- `src/pages/Dashboard.tsx` — integrates trial banner, badge, expired gate
+- `src/pages/History.tsx` — integrates trial banner and badge
+
+**Manual activation:** Set `plan` column in `user_profiles` to `founding_partner` (or any paid plan) to bypass trial gate.
+
+### All 5 Phases Complete
+The full ClaimVex web application is built: auth, validation form, 5-module validation engine, results display, Supabase-backed history + ROI metrics, and trial management with soft gate.
 
 ### Design System
 - Navy: #004A7C, Teal: #00796B, Error: #C62828, Warning: #E65100, Success: #2E7D32
