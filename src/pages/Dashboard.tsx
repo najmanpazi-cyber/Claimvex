@@ -1,11 +1,16 @@
+import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import ValidationForm from "@/components/ValidationForm";
+import ValidationResults from "@/components/ValidationResults";
 import type { ValidationFormData } from "@/components/ValidationForm";
+import { runValidation } from "@/services/validationService";
+import type { ValidationResult } from "@/services/validationService";
 
 export default function Dashboard() {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
+  const [result, setResult] = useState<ValidationResult | null>(null);
 
   async function handleSignOut() {
     await signOut();
@@ -13,8 +18,12 @@ export default function Dashboard() {
   }
 
   function handleValidate(data: ValidationFormData) {
-    // Phase 2: log to console. Phase 3 will wire to validators.
-    console.log("Validation submitted:", data);
+    const validationResult = runValidation(data);
+    setResult(validationResult);
+  }
+
+  function handleValidateAnother() {
+    setResult(null);
   }
 
   return (
@@ -42,19 +51,21 @@ export default function Dashboard() {
       {/* Main Content */}
       <main className="mx-auto max-w-3xl px-6 lg:px-8 py-12">
         <div className="mb-8">
-          <h1 className="text-3xl font-headline font-extrabold text-cv-primary">Validate a Claim</h1>
-          <p className="mt-2 text-cv-on-surface-variant">Enter claim data below to check against all validation modules.</p>
-        </div>
-
-        <ValidationForm onSubmit={handleValidate} />
-
-        {/* Results placeholder — Phase 3 will replace this */}
-        <div className="mt-8 rounded-2xl border border-dashed border-cv-outline-variant/30 bg-cv-surface-container-low/50 p-8 text-center">
-          <span className="material-symbols-outlined text-cv-on-surface-variant/40 text-3xl mb-2">pending</span>
-          <p className="text-sm text-cv-on-surface-variant">
-            Validation results will appear here after you click Validate.
+          <h1 className="text-3xl font-headline font-extrabold text-cv-primary">
+            {result ? "Validation Results" : "Validate a Claim"}
+          </h1>
+          <p className="mt-2 text-cv-on-surface-variant">
+            {result
+              ? "Review the results below. Click on any module to see details."
+              : "Enter claim data below to check against all validation modules."}
           </p>
         </div>
+
+        {result ? (
+          <ValidationResults result={result} onValidateAnother={handleValidateAnother} />
+        ) : (
+          <ValidationForm onSubmit={handleValidate} />
+        )}
       </main>
     </div>
   );

@@ -115,8 +115,15 @@ Structured form on dashboard: CPT code(s), modifier(s), date of service, optiona
 
 **Notes for Phase 3:** `ValidationFormData` interface exports `cptCodes`, `modifiers`, `dateOfService`, `icd10Code`, `patientAge`. Build a service layer that transforms this into each validator's input format and runs all 5.
 
-### Phase 3: Wire Validators + Results Display
+### Phase 3: Wire Validators + Results Display — COMPLETE
 Service layer adapts form input → validator format. Runs all 5 validators (PTP, MUE, Modifier 59/X, Global Period, Doc Sufficiency). Results panel with per-validator PASS/FAIL/WARNING cards, overall summary, expand/collapse details.
+
+**Completed files:**
+- `src/services/validationService.ts` — transforms form data → structured fields, runs all 5 validators, classifies results (pass/fail/warning/n-a), returns unified `ValidationResult`
+- `src/components/ValidationResults.tsx` — overall summary card (green/red), per-module expandable cards with rule details, "Validate Another" button
+- `src/pages/Dashboard.tsx` — wired: form → validationService → results display, toggles between form and results views
+
+**Notes for Phase 4:** Validation runs client-side (all validators + rule data bundled in JS). Results are not yet persisted to Supabase. Next step stores each validation run in a `validations` table for history + metrics.
 
 ### Phase 4: History + Metrics
 Store validations in Supabase `validations` table (RLS per user). History page with sortable table. Metrics dashboard: total validations, errors caught, warnings, estimated denials prevented, estimated savings (errors × $35).
