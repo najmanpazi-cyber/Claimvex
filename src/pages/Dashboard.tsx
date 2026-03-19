@@ -5,21 +5,30 @@ import ValidationForm from "@/components/ValidationForm";
 import ValidationResults from "@/components/ValidationResults";
 import type { ValidationFormData } from "@/components/ValidationForm";
 import { runValidation } from "@/services/validationService";
+import { saveValidation } from "@/services/historyService";
 import type { ValidationResult } from "@/services/validationService";
 
 export default function Dashboard() {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const [result, setResult] = useState<ValidationResult | null>(null);
+  const [saving, setSaving] = useState(false);
 
   async function handleSignOut() {
     await signOut();
     navigate("/login", { replace: true });
   }
 
-  function handleValidate(data: ValidationFormData) {
+  async function handleValidate(data: ValidationFormData) {
     const validationResult = runValidation(data);
     setResult(validationResult);
+
+    // Store in Supabase (non-blocking — don't fail the UI if storage fails)
+    if (user) {
+      setSaving(true);
+      await saveValidation(user.id, data, validationResult);
+      setSaving(false);
+    }
   }
 
   function handleValidateAnother() {
@@ -34,7 +43,11 @@ export default function Dashboard() {
           <Link to="/dashboard" className="text-2xl font-extrabold tracking-tight text-cv-primary font-headline">
             ClaimVex
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6">
+            <div className="hidden sm:flex gap-4 text-sm font-semibold">
+              <Link to="/dashboard" className="text-cv-primary border-b-2 border-cv-secondary pb-0.5">Validate</Link>
+              <Link to="/history" className="text-cv-on-surface-variant hover:text-cv-primary transition-colors">History</Link>
+            </div>
             <span className="text-sm text-cv-on-surface-variant font-medium hidden sm:inline">
               {user?.email}
             </span>
@@ -62,7 +75,12 @@ export default function Dashboard() {
         </div>
 
         {result ? (
-          <ValidationResults result={result} onValidateAnother={handleValidateAnother} />
+          <>
+            {saving && (
+              <div className="mb-4 text-xs text-cv-on-surface-variant">Saving to history...</div>
+            )}
+            <ValidationResults result={result} onValidateAnother={handleValidateAnother} />
+          </>
         ) : (
           <ValidationForm onSubmit={handleValidate} />
         )}

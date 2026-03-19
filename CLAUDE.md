@@ -125,8 +125,17 @@ Service layer adapts form input → validator format. Runs all 5 validators (PTP
 
 **Notes for Phase 4:** Validation runs client-side (all validators + rule data bundled in JS). Results are not yet persisted to Supabase. Next step stores each validation run in a `validations` table for history + metrics.
 
-### Phase 4: History + Metrics
+### Phase 4: History + Metrics — COMPLETE
 Store validations in Supabase `validations` table (RLS per user). History page with sortable table. Metrics dashboard: total validations, errors caught, warnings, estimated denials prevented, estimated savings (errors × $35).
+
+**Completed files:**
+- `supabase/migrations/20260319000000_add_validations_and_profiles.sql` — creates `validations` table (RLS), `user_profiles` table (RLS), auto-profile trigger on signup
+- `src/services/historyService.ts` — saveValidation, fetchValidations, computeMetrics ($35/denial)
+- `src/pages/History.tsx` — 6 metric cards, history table with expandable results, empty state CTA
+- `src/pages/Dashboard.tsx` — now saves to Supabase after each validation, added Validate/History nav tabs
+- `src/App.tsx` — added `/history` protected route
+
+**IMPORTANT:** Run the migration SQL in Supabase SQL Editor before testing. The `validations` and `user_profiles` tables must exist.
 
 ### Phase 5: Trial Management
 30-day free trial tracked via `user_profiles.trial_start`. Banner from day 21. After day 30: validation form disabled, history/metrics remain accessible (ROI data convinces conversion). Soft gate with CTA to continue at $99/mo.
