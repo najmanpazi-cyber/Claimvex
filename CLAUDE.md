@@ -93,8 +93,18 @@ Do NOT add new npm/bun packages without asking first.
 
 Full build plan is in `CLAIMVEX_BUILD_PLAN.md`. Summary of the 5 phases:
 
-### Phase 1: Authentication
+### Phase 1: Authentication — COMPLETE
 Supabase Auth with email+password. Routes: `/login`, `/signup`, `/dashboard` (protected). Nav bar with logo, user email, logout. Color palette: navy #004A7C, teal #00796B.
+
+**Completed files:**
+- `src/contexts/AuthContext.tsx` — AuthProvider + useAuth hook (signUp, signIn, signOut, session state)
+- `src/components/ProtectedRoute.tsx` — redirects unauthenticated users to /login
+- `src/pages/Login.tsx` — email+password form with error handling
+- `src/pages/Signup.tsx` — email+password+confirm form with email confirmation flow
+- `src/pages/Dashboard.tsx` — protected page with nav bar (logo, email, logout) + placeholder card
+- `src/App.tsx` — updated routes, AuthProvider wraps all routes
+
+**Notes for Phase 2:** Dashboard is a placeholder. Build the validation input form as the main content of `/dashboard`. The AuthProvider and nav bar are ready to reuse.
 
 ### Phase 2: Validation Input Form
 Structured form on dashboard: CPT code(s), modifier(s), date of service, optional ICD-10 and patient age. Client-side validation. Clean card-based layout for non-technical billing coders.
