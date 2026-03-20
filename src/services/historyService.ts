@@ -31,14 +31,14 @@ export async function saveValidation(
   inputData: ValidationFormData,
   result: ValidationResult,
 ): Promise<{ error: string | null }> {
-  const { error } = await supabase.from("validations" as never).insert({
+  const { error } = await supabase.from("validations").insert({
     user_id: userId,
-    input_data: inputData,
-    results: result,
+    input_data: inputData as unknown as Record<string, unknown>,
+    results: result as unknown as Record<string, unknown>,
     overall_status: result.overallStatus,
     errors_found: result.fails,
     warnings_found: result.warnings,
-  } as never);
+  });
 
   if (error) return { error: error.message };
   return { error: null };
@@ -46,7 +46,7 @@ export async function saveValidation(
 
 export async function fetchValidations(userId: string): Promise<{ data: StoredValidation[]; error: string | null }> {
   const { data, error } = await supabase
-    .from("validations" as never)
+    .from("validations")
     .select("*")
     .eq("user_id", userId)
     .order("created_at", { ascending: false })

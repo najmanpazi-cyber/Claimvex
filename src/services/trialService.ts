@@ -18,7 +18,7 @@ const PAID_PLANS = ["founding_partner", "starter", "professional", "business", "
 
 export async function fetchTrialStatus(userId: string): Promise<TrialStatus> {
   const { data, error } = await supabase
-    .from("user_profiles" as never)
+    .from("user_profiles")
     .select("trial_start, plan")
     .eq("id", userId)
     .single();
@@ -36,8 +36,7 @@ export async function fetchTrialStatus(userId: string): Promise<TrialStatus> {
     };
   }
 
-  const profile = data as unknown as { trial_start: string; plan: string };
-  const plan = profile.plan || "trial";
+  const plan = data.plan || "trial";
   const isPaid = PAID_PLANS.includes(plan);
 
   if (isPaid) {
@@ -54,7 +53,7 @@ export async function fetchTrialStatus(userId: string): Promise<TrialStatus> {
   }
 
   // Calculate days remaining
-  const trialStart = new Date(profile.trial_start);
+  const trialStart = new Date(data.trial_start);
   const now = new Date();
   const elapsed = Math.floor((now.getTime() - trialStart.getTime()) / (1000 * 60 * 60 * 24));
   const daysRemaining = Math.max(0, TRIAL_DAYS - elapsed);
