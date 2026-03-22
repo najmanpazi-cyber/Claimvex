@@ -77,7 +77,7 @@ export function buildDomainResults(scenario: Scenario, triggeredEvals: RuleEvalu
     const expectedSet = new Set(expectedRulesInDomain);
     const actualSet = new Set(actualRulesInDomain);
 
-    const missingRules = expectedRulesInDomain.filter((r) => !actualSet.has(r));
+    const missingRules = expectedRulesInDomain.filter((r) => !actualSet.has(r as RuleId));
     const extraRules = actualRulesInDomain.filter((r) => !expectedSet.has(r as string));
 
     // Determine expected action for domain (highest severity expected rule in domain)

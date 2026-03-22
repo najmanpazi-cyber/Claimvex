@@ -1,5 +1,5 @@
 // ACC-11: Tests for the centralized UI gating state resolver
-import { describe, it, expect } from "bun:test";
+import { describe, it, expect } from "vitest";
 import { resolveGatingState } from "@/hooks/useResultGatingState";
 import {
   MOCK_DETERMINISTIC_READY,
