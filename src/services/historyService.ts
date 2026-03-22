@@ -33,8 +33,8 @@ export async function saveValidation(
 ): Promise<{ error: string | null }> {
   const { error } = await supabase.from("validations").insert([{
     user_id: userId,
-    input_data: inputData as unknown as Record<string, unknown>,
-    results: result as unknown as Record<string, unknown>,
+    input_data: inputData as unknown as Json,
+    results: result as unknown as Json,
     overall_status: result.overallStatus,
     errors_found: result.fails,
     warnings_found: result.warnings,
