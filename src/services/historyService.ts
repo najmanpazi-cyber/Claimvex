@@ -31,14 +31,14 @@ export async function saveValidation(
   inputData: ValidationFormData,
   result: ValidationResult,
 ): Promise<{ error: string | null }> {
-  const { error } = await supabase.from("validations").insert({
+  const { error } = await supabase.from("validations").insert([{
     user_id: userId,
     input_data: inputData as unknown as Record<string, unknown>,
     results: result as unknown as Record<string, unknown>,
     overall_status: result.overallStatus,
     errors_found: result.fails,
     warnings_found: result.warnings,
-  });
+  }]);
 
   if (error) return { error: error.message };
   return { error: null };

@@ -8,6 +8,7 @@ import { buildVersionMetadata } from "@/utils/versionMetadata";
 // ---------------------------------------------------------------------------
 
 export const MOCK_RESULT: CodingResult = {
+  add_on_codes: [],
   primary_code: {
     cpt_code: "27447",
     description: "Total knee arthroplasty",

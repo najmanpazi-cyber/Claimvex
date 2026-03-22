@@ -622,7 +622,7 @@ Deno.serve(async (req: Request) => {
     return errorResponse(
       500,
       "INTERNAL_ERROR",
-      err.message || "Unknown error",
+      (err as Error).message || "Unknown error",
       "Something went wrong. Please try again."
     );
   }
