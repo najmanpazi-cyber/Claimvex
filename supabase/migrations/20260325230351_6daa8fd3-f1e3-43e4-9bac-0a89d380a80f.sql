@@ -1,0 +1,1 @@
+UPDATE public.user_profiles SET trial_start = '2026-03-03T00:00:00Z' WHERE id IN ('34233da3-3fe3-40f3-8ee3-047e4a04349d', '9ba7597b-4155-4f36-8c57-bc6eb5dd1055', 'e0f3d411-ebc5-4fed-a851-a45df9aac102');
