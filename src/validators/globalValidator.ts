@@ -370,16 +370,19 @@ export function validateGlobal(input: GlobalValidatorInput): GlobalValidationRes
     for (const emCode of emCodes) {
       // Skip if already has -25
       if (codeHasAnyModifier(emCode, ruleConfig342.sufficient_modifiers, input)) continue;
-      // Skip if em_separately_identifiable is explicitly true
-      if (input.em_separately_identifiable) continue;
 
       trigger342 = true;
       evidence342.push(`E/M ${emCode} same day as procedure(s): ${procedureCodes.join(", ")}`);
       evidence342.push(`em_separately_identifiable: ${input.em_separately_identifiable}`);
 
+      // Message varies based on whether separate identifiability is documented
+      const msg342 = input.em_separately_identifiable
+        ? `E/M code ${emCode} billed same day as procedure ${procedureCodes[0]}. E/M is separately identifiable but modifier -25 is missing. Add -25 before submission.`
+        : `E/M code ${emCode} billed same day as procedure ${procedureCodes[0]}. Modifier -25 required if E/M is separately identifiable.`;
+
       forceReviewItems.push({
         rule_id: "R-3.4.2",
-        message: `E/M code ${emCode} billed same day as procedure ${procedureCodes[0]}. Modifier -25 required if E/M is separately identifiable.`,
+        message: msg342,
         code_context: [emCode, procedureCodes[0]],
         resolved: false,
       });

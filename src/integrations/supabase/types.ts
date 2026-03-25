@@ -49,31 +49,31 @@ export type Database = {
       }
       user_profiles: {
         Row: {
+          clean_validations: number | null
           created_at: string
           id: string
-          plan: string
-          trial_start: string
+          plan: string | null
           subspecialty: string | null
-          total_validations: number
-          clean_validations: number
+          total_validations: number | null
+          trial_start: string
         }
         Insert: {
+          clean_validations?: number | null
           created_at?: string
           id: string
-          plan?: string
-          trial_start?: string
+          plan?: string | null
           subspecialty?: string | null
-          total_validations?: number
-          clean_validations?: number
+          total_validations?: number | null
+          trial_start?: string
         }
         Update: {
+          clean_validations?: number | null
           created_at?: string
           id?: string
-          plan?: string
-          trial_start?: string
+          plan?: string | null
           subspecialty?: string | null
-          total_validations?: number
-          clean_validations?: number
+          total_validations?: number | null
+          trial_start?: string
         }
         Relationships: []
       }

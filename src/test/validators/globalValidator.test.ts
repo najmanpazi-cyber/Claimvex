@@ -155,9 +155,10 @@ describe("Global Period Validator — ACC-07", () => {
   });
 
   // =========================================================================
-  // Test 6: R-3.4.2 pass — em_separately_identifiable=true
+  // Test 6: R-3.4.2 fires even when em_separately_identifiable=true
+  // (ACC-10: boolean is message context, NOT a gate — modifier -25 is still required)
   // =========================================================================
-  it("6. does not trigger R-3.4.2 when em_separately_identifiable is true", () => {
+  it("6. triggers R-3.4.2 even when em_separately_identifiable is true (modifier -25 still required)", () => {
     const input = makeInput({
       cpt_codes_submitted: ["99214", "20610"],
       modifiers_present: { "20610": ["-RT"] },
@@ -166,9 +167,13 @@ describe("Global Period Validator — ACC-07", () => {
     const result = validateGlobal(input);
 
     const r342 = result.rule_evaluations.find((re) => re.rule_id === "R-3.4.2");
-    expect(r342!.trigger_matched).toBe(false);
+    expect(r342!.trigger_matched).toBe(true);
 
-    expect(result.force_review_items).toHaveLength(0);
+    // Force-review item created with "separately identifiable" message
+    const frItem = result.force_review_items.find((item) => item.rule_id === "R-3.4.2");
+    expect(frItem).toBeDefined();
+    expect(frItem!.message).toContain("separately identifiable but modifier -25 is missing");
+    expect(frItem!.message).toContain("-25");
   });
 
   // =========================================================================
