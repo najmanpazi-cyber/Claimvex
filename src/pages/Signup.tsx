@@ -47,11 +47,7 @@ export default function Signup() {
     if (err) {
       setError(err);
     } else {
-      // Save subspecialty to profile (non-blocking — profile created by trigger)
-      const { data: { user: newUser } } = await supabase.auth.getUser();
-      if (newUser) {
-        await supabase.from("user_profiles").update({ subspecialty }).eq("id", newUser.id);
-      }
+      // Subspecialty noted for future use (not stored in user_profiles yet)
       setSuccess(true);
     }
   }
