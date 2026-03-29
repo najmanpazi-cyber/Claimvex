@@ -12,7 +12,7 @@ import { openRoiReport } from "@/services/roiExportService";
 import { computeAccuracyScore } from "@/services/accuracyService";
 import type { AccuracyScore } from "@/services/accuracyService";
 
-function MetricCard({ label, value, icon, accent = false }: { label: string; value: string; icon: string; accent?: boolean }) {
+function MetricCard({ label, value, icon, accent = false, subtitle }: { label: string; value: string; icon: string; accent?: boolean; subtitle?: string }) {
   return (
     <div className={`rounded-xl border p-5 ${accent ? "bg-cv-secondary/5 border-cv-secondary/20" : "bg-cv-surface-container-lowest border-cv-outline-variant/20"}`}>
       <div className="flex items-center gap-3 mb-2">
@@ -20,6 +20,7 @@ function MetricCard({ label, value, icon, accent = false }: { label: string; val
         <span className="text-xs font-bold uppercase tracking-wider text-cv-on-surface-variant">{label}</span>
       </div>
       <div className={`text-2xl font-extrabold font-headline ${accent ? "text-cv-secondary" : "text-cv-primary"}`}>{value}</div>
+      {subtitle && <div className="text-[10px] text-cv-on-surface-variant mt-1">{subtitle}</div>}
     </div>
   );
 }
@@ -111,7 +112,7 @@ export default function History() {
                   <MetricCard label="Validations" value={String(metrics.totalValidations)} icon="assignment_turned_in" />
                   <MetricCard label="Errors Caught" value={String(metrics.totalErrors)} icon="error" />
                   <MetricCard label="Warnings" value={String(metrics.totalWarnings)} icon="warning" />
-                  <MetricCard label="Error Rate" value={`${metrics.errorRate.toFixed(1)}%`} icon="percent" />
+                  <MetricCard label="Claims with Issues" value={`${metrics.errorRate.toFixed(1)}%`} icon="percent" subtitle={`${validations.filter(v => v.errors_found > 0 || v.warnings_found > 0).length} of ${metrics.totalValidations} validations had issues`} />
                   <MetricCard label="Denials Prevented" value={String(metrics.estimatedDenialsPrevented)} icon="shield" />
                   <MetricCard label="Est. Savings" value={`$${metrics.estimatedSavings.toLocaleString()}`} icon="savings" accent />
                 </div>
