@@ -43,7 +43,7 @@ export default function ValidationForm({ onSubmit, submitting = false }: Validat
   function validate(): Record<string, string> {
     const errs: Record<string, string> = {};
 
-    const rawCpts = cptInput.split(",").map((s) => s.trim()).filter(Boolean);
+    const rawCpts = cptInput.split(/[\s,]+/).map((s) => s.trim()).filter(Boolean);
     if (rawCpts.length === 0) {
       errs.cpt = "At least one CPT code is required.";
     } else {
@@ -101,7 +101,7 @@ export default function ValidationForm({ onSubmit, submitting = false }: Validat
     setErrors(errs);
     if (Object.keys(errs).length > 0) return;
 
-    const cptCodes = cptInput.split(",").map((s) => s.trim()).filter(Boolean);
+    const cptCodes = cptInput.split(/[\s,]+/).map((s) => s.trim()).filter(Boolean);
     const modifiers = modifierInput.trim()
       ? modifierInput.split(",").map((s) => s.trim().toUpperCase()).filter(Boolean)
       : [];
