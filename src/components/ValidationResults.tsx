@@ -9,7 +9,7 @@ const STATUS_CONFIG: Record<ModuleStatus, { label: string; bg: string; text: str
 };
 
 function ModuleCard({ module }: { module: ModuleResult }) {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(module.status === "fail" || module.status === "warning");
   const config = STATUS_CONFIG[module.status];
 
   return (
