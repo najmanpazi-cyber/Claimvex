@@ -33,8 +33,12 @@ export default function ValidationForm({ onSubmit, submitting = false }: Validat
   const [dateOfService, setDateOfService] = useState(todayString());
   const [icd10Code, setIcd10Code] = useState("");
   const [patientAge, setPatientAge] = useState("");
-  const [laterality, setLaterality] = useState<ValidationFormData["laterality"]>("not_specified");
-  const [payerType, setPayerType] = useState<ValidationFormData["payerType"]>("commercial");
+  const [laterality, setLaterality] = useState<ValidationFormData["laterality"]>(
+    () => (localStorage.getItem("claimvex_last_laterality") as ValidationFormData["laterality"]) || "not_specified"
+  );
+  const [payerType, setPayerType] = useState<ValidationFormData["payerType"]>(
+    () => (localStorage.getItem("claimvex_last_payer") as ValidationFormData["payerType"]) || "commercial"
+  );
   const [priorSurgeryCpt, setPriorSurgeryCpt] = useState("");
   const [priorSurgeryDate, setPriorSurgeryDate] = useState("");
   const [showAdvanced, setShowAdvanced] = useState(false);
@@ -106,6 +110,9 @@ export default function ValidationForm({ onSubmit, submitting = false }: Validat
       ? modifierInput.split(",").map((s) => s.trim().toUpperCase()).filter(Boolean)
       : [];
     const age = patientAge.trim() ? parseInt(patientAge, 10) : null;
+
+    localStorage.setItem("claimvex_last_payer", payerType);
+    localStorage.setItem("claimvex_last_laterality", laterality);
 
     onSubmit({
       cptCodes,
