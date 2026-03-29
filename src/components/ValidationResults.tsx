@@ -61,6 +61,9 @@ function ModuleCard({ module }: { module: ModuleResult }) {
                   {rule.payer_note && (
                     <p className="text-xs text-cv-on-surface-variant/70 mt-1 italic">Payer note: {rule.payer_note}</p>
                   )}
+                  {rule.policy_anchor && (
+                    <p className="text-xs text-gray-500 italic mt-1">{rule.policy_anchor}</p>
+                  )}
                 </div>
               ))}
               {module.warnings.map((w, i) => (
