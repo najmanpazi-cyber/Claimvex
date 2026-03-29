@@ -61,7 +61,8 @@ export function computeMetrics(validations: StoredValidation[]): UserMetrics {
   const totalValidations = validations.length;
   const totalErrors = validations.reduce((sum, v) => sum + v.errors_found, 0);
   const totalWarnings = validations.reduce((sum, v) => sum + v.warnings_found, 0);
-  const errorRate = totalValidations > 0 ? (totalErrors / totalValidations) * 100 : 0;
+  const validationsWithIssues = validations.filter(v => v.errors_found > 0 || v.warnings_found > 0).length;
+  const errorRate = totalValidations > 0 ? (validationsWithIssues / totalValidations) * 100 : 0;
 
   return {
     totalValidations,
